@@ -19,7 +19,7 @@ export class GameComponent implements OnInit {
   getPokemon() {
   this._gameService.getPokemon().subscribe(
     (data) => {
-      this.pokemon = data.cards;
+      this.pokemon = data;
       console.log(data);
     },
     (err) => console.error(err),

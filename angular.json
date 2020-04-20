@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "mantis-pokemon"
+  "defaultProject": "mantis-pokemon",
+  "cli": {
+    "analytics": "7771cb26-d76b-4a36-8d3e-ab0c2425a9a6"
+  }
 }
