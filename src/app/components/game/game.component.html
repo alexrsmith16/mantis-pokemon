@@ -1,4 +1,4 @@
 <h2>pokemon</h2>
 <div class="container">
-  <div *ngFor="let poke of pokemon" [style.background-image]="'url(' + poke.imageUrlHiRes + ')'" class="Pokemon"></div>
+  <div *ngFor="let poke of pokemon?.cards" [style.background-image]="'url(' + poke.imageUrlHiRes + ')'" class="Pokemon"></div>
 </div>
