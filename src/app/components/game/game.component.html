@@ -1,4 +1,19 @@
 <h2>pokemon</h2>
 <div class="container">
-  <div *ngFor="let poke of pokemon?.cards" [style.background-image]="'url(' + poke.imageUrlHiRes + ')'" class="Pokemon"></div>
+  <div
+    class="imgBack"
+    [id]="poke.id"
+    *ngFor="let poke of pokemon"
+    [style.background-image]="'url(' + poke.imageUrlHiRes + ')'"
+  >
+    <img [src]="" alt="" class="Pokemon" />
+  </div>
+  <div
+    class="imgBack"
+    [id]="poke.id"
+    *ngFor="let poke of pokemon"
+    [style.background-image]="'url(' + poke.imageUrlHiRes + ')'"
+  >
+    <img [src]="" alt="" class="Pokemon flipped" />
+  </div>
 </div>

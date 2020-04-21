@@ -1,10 +1,19 @@
 .container {
     display: flex;
+    // flex-direction: column;
     flex-wrap: wrap;
-    .Pokemon {
+    .imgBack {
         height: 200px;
         width: 150px;
         background-size: 100% 100%;
         margin: 10px;
+        .Pokemon {
+            height: 100%;
+            width: 100%;
+            background-size: 100% 100%;
+        }
     }
+}
+.flipped {
+    background-image: url("https://jbrogan17.files.wordpress.com/2010/12/jared-pokemon-card-backside1.jpg");
 }

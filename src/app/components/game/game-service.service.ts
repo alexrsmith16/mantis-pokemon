@@ -10,6 +10,6 @@ export class GameServiceService {
   constructor(private http: HttpClient) { }
 
   getPokemon() {
-    return this.http.get("https://api.pokemontcg.io/v1/cards");
+    return this.http.get("https://api.pokemontcg.io/v1/cards/");
   }
 }
