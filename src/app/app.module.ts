@@ -7,6 +7,8 @@ import { LoginComponent } from "./components/login/login.component";
 import { AccountComponent } from "./components/account/account.component";
 import { SetupComponent } from "./components/setup/setup.component";
 import { GameComponent } from "./components/game/game.component";
+import { NavComponent } from './components/nav/nav.component';
+
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { GameServiceService } from './components/game/game-service.service'; 
@@ -22,6 +24,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AccountComponent,
     SetupComponent,
     GameComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
