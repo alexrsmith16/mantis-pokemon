@@ -3,7 +3,7 @@
   <div
     class="imgBack"
     [id]="poke.id"
-    *ngFor="let poke of pokemon"
+    *ngFor="let poke of pokemon?.cards"
     [style.background-image]="'url(' + poke.imageUrlHiRes + ')'"
   >
     <img [src]="" alt="" class="Pokemon" />
@@ -11,7 +11,7 @@
   <div
     class="imgBack"
     [id]="poke.id"
-    *ngFor="let poke of pokemon"
+    *ngFor="let poke of pokemon?.cards"
     [style.background-image]="'url(' + poke.imageUrlHiRes + ')'"
   >
     <img [src]="" alt="" class="Pokemon flipped" />
