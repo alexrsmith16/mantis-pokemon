@@ -13,9 +13,17 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { GameServiceService } from './components/game/game-service.service'; 
 import { environment } from 'src/environments/environment';
+
+//Firebase Imports
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+// Material Imports
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +42,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    
+    MatToolbarModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatMenuModule
   ],
   providers: [GameServiceService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
