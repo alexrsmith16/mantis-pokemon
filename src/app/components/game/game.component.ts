@@ -1,9 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import {GameServiceService} from './game-service.service';
 import {Card} from '../../models/card';
-import { style } from '@angular/animations';
-import { JsonPipe } from '@angular/common';
-// import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: "app-game",
@@ -15,7 +12,9 @@ export class GameComponent implements OnInit {
   public pokemon;
   public imgUrl = "https://jbrogan17.files.wordpress.com/2010/12/jared-pokemon-card-backside1.jpg";
   public ranNum = Math.floor(Math.random()*90);
-  public numOfPairs = 5
+  public numOfPairs = 8
+  public flipped = true;
+  @ViewChild("myLabel") lab;
 
   constructor(private _gameService: GameServiceService) {}
 
@@ -28,11 +27,22 @@ export class GameComponent implements OnInit {
     (data: {cards: Card[]}) => {
       this.pokemon = data && data.cards ? data.cards : [];
       this.pokemon = this.pokemon.slice(this.ranNum, this.ranNum + this.numOfPairs)
-      this.pokeArray = (this.pokemon)
-      console.log(data);
+      this.pokeArray = this.pokemon.concat(this.pokemon)
+      console.log(this.pokeArray);
     },
-    // (err) => console.error(err),
-    // () => console.log("Done getting data.")
+    (err) => console.error(err),
+    () => console.log("Done getting data.")
   );
+  }
+
+  showOrHideManually() {
+    this.flipped = !this.flipped;
+    if(this.flipped) {
+      this.lab.nativeElement.classList.add("show");
+      this.lab.nativeElement.classList.remove("hide");
+    } else {
+      this.lab.nativeElement.classList.add("hide");
+      this.lab.nativeElement.classList.remove("show");
+    }
   }
 }
