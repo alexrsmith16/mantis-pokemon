@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-account',
@@ -6,8 +7,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  constructor() { }
+
+  constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
+    
   }
 }
