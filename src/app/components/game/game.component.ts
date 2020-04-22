@@ -14,7 +14,7 @@ export class GameComponent implements OnInit {
   public ranNum = Math.floor(Math.random()*90);
   public numOfPairs = 8
   public flipped = true;
-  @ViewChild("myLabel") lab;
+  // @ViewChild("myLabel") lab;
 
   constructor(private _gameService: GameServiceService) {}
 
@@ -35,14 +35,14 @@ export class GameComponent implements OnInit {
   );
   }
 
-  showOrHideManually() {
-    this.flipped = !this.flipped;
-    if(this.flipped) {
-      this.lab.nativeElement.classList.add("show");
-      this.lab.nativeElement.classList.remove("hide");
-    } else {
-      this.lab.nativeElement.classList.add("hide");
-      this.lab.nativeElement.classList.remove("show");
-    }
-  }
+  // showOrHideManually() {
+  //   this.flipped = !this.flipped;
+  //   if(this.flipped) {
+  //     this.lab.nativeElement.classList.add("show");
+  //     this.lab.nativeElement.classList.remove("hide");
+  //   } else {
+  //     this.lab.nativeElement.classList.add("hide");
+  //     this.lab.nativeElement.classList.remove("show");
+  //   }
+  // }
 }
