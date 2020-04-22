@@ -1,1 +1,30 @@
-<p>setup works!</p>
+
+<link href="setup.component.scss">
+
+<div id="container">
+        <div id="background"></div>
+        <div id="backgroundShader"></div>
+    
+        <div id="settingsCard">
+            <div class="matchAmountContainer">
+                <p>How many matches would you like to play with?</p>
+                    <input type='number'>
+
+                    <p>Would you like to save your settings?</p>
+                    <input type='checkbox'>
+            </div>
+    
+            <div id="playerAmountContainer">
+                <p>How many Players are there?</p>
+                <select value='1' id="playerAmountValue" onchange="console.log('playerAmountChanged');">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <div id="playerSelection">
+
+                </div>
+            </div>
+        </div>
+    </div>

@@ -24,6 +24,7 @@
     "@angular/platform-browser": "~9.0.7",
     "@angular/platform-browser-dynamic": "~9.0.7",
     "@angular/router": "~9.0.7",
+    "@fortawesome/angular-fontawesome": "^0.6.1",
     "firebase": "^7.14.1",
     "nan": "^2.14.0",
     "ngx-auth-firebaseui": "^4.1.0",
