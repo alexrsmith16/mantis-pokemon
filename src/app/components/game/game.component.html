@@ -2,16 +2,16 @@
 <div class="container" ng-app="myApp" ng-controller="myCtrl">
   <div
     class="imgBack"
-    [id]="poke.id"
-    *ngFor="let poke of pokeArray; let i = index"
-    [style.background-image]="'url(' + poke.imageUrlHiRes + ')'"
+    [id]="card.id"
+    *ngFor="let card of pokeArray; let i = index"
+    [style.background-image]="'url(' + card.imageUrlHiRes + ')'"
   >
     <img
       [src]=""
       alt=""
       class="Pokemon"
-      [ngClass]="{ show: flipped, hide: !flipped }"
-      (click)="flipped = !flipped"
+      [ngClass]="{ show: card.flipped, hide: !card.flipped }"
+      (click)="card.flipped = !card.flipped"
     />
   </div>
   <!-- <div
