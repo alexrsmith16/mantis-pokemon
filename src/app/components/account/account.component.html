@@ -2,6 +2,8 @@
     <h1>Account - </h1>
     <!-- <img></img> -->
 </div>
-<div>
-    <p>username</p>
+<div *ngIf="auth.user$ | async as user">
+    <h3>{{ user.displayName }}</h3>
+    <img  [src]="user.photoURL">
+    <button (click)="auth.signOut()">Logout</button>
 </div>

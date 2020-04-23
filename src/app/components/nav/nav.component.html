@@ -1,9 +1,14 @@
 <mat-toolbar>
     Placeholder
     <div class="nav-buttons">
-        <a href="/login"><button mat-stroked-button color="accent">login</button></a>
         <a href="/setup"><button mat-stroked-button color="accent">setup</button></a>
         <a href="/game"><button mat-stroked-button color="accent">game</button></a>
-        <a href="/account"><button mat-stroked-button color="accent">account</button></a>
+        <div *ngIf="auth.user$ | async as user; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+            <a href="/account"><button mat-stroked-button color="accent">account</button></a>
+        </ng-template>
+        <ng-template #elseBlock>
+        <a href="/login" #elseBlock><button mat-stroked-button color="accent">login</button></a>
+        </ng-template>
     </div>
 </mat-toolbar>
