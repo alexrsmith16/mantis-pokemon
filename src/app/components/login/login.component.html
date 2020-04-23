@@ -1,19 +1,22 @@
-<div *ngIf="auth.user$ | async; then authenticated else guest">
+<div id="container">
+    <div *ngIf="auth.user$ | async; then authenticated else guest"></div>
+        <ng-template #guest>
+            <div class="loginbox">
+                <p class="title">Pokemon Match Game</p>
+
+                <button class="button" (click)="auth.googleSignin()">
+                    <img src='../../resources/googleicon.jpg'> Login with Google
+                </button>
+            </div>
+        </ng-template>
+
+        <ng-template #authenticated>
+            <div *ngIf="auth.user$ | async as user">
+                <div class="loginbox">
+                    <h3 class="title">{{ user.displayName }}</h3>
+                    <!-- <img  [src]="user.photoURL"> -->
+                    <button (click)="auth.signOut()">Logout</button>
+                </div>
+            </div>
+        </ng-template>
 </div>
-
-<ng-template #guest>
-<p>Login to Play Pokemon</p>
-
-<button (click)="auth.googleSignin()">
-    <img src='Googleicon.png'> Login with Google
-</button>
-
-</ng-template>
-
-<ng-template #authenticated>
-<div *ngIf="auth.user$ | async as user">
-    <h3>{{ user.displayName }}</h3>
-    <img  [src]="user.photoURL">
-    <button (click)="auth.signOut()">Logout</button>
-</div>
-</ng-template>
