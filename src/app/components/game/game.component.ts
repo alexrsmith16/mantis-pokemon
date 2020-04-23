@@ -3,6 +3,8 @@ import {GameServiceService} from './game-service.service';
 import {Card} from '../../models/card';
 import { AngularFireAuth } from '@angular/fire/auth/auth';
 import * as _ from "lodash";
+import { timeInterval, timeout } from 'rxjs/operators';
+import { threadId } from 'worker_threads';
 
 
 @Component({
@@ -16,7 +18,8 @@ export class GameComponent implements OnInit {
   public imgUrl = "https://jbrogan17.files.wordpress.com/2010/12/jared-pokemon-card-backside1.jpg";
   public ranNum = Math.floor(Math.random()*90);
   public numOfPairs = 8
-  public counter = 0;
+  public counter;
+  public matched = [];
   // @ViewChild("myLabel") lab;
 
   constructor(private _gameService: GameServiceService) {}
@@ -41,7 +44,6 @@ export class GameComponent implements OnInit {
       console.log(this.pokeArray);
 
       this.pokeArray.forEach(element => {
-        element.selected = false;
         element.flipped = true;
       });
     },
@@ -52,14 +54,37 @@ export class GameComponent implements OnInit {
 
   isSelected() {
     this.counter = 0;
-    console.log(this.pokeArray);
-    for (const key in this.pokeArray) {
-      if (this.pokeArray.flipped = true) {
-        console.log(this.pokeArray.flipped);
+    this.matched = [];
+    // thread.sleep(2000)
+    this.pokeArray.forEach(card => {
+      if (card.flipped === false) {
         this.counter += 1;
       }
-    };
+    });
     console.log(this.counter);
+    if (this.counter === 2) {
+      this.pokeArray.forEach(card => {
+        if (card.flipped === false) {
+          this.matched.push(card.id);
+        }
+      });
+      console.log(this.matched);
+      if (this.matched[0] === this.matched[1]) {
+        console.log("Match!")
+        this.pokeArray.forEach(card => {
+          if (card.id === this.matched[0]) {
+            this.pokeArray.splice(this.pokeArray.indexOf(card), 1);
+          }
+        })
+      } else {
+        console.log("Failure");
+        this.pokeArray.forEach(card => {
+          if (card.flipped === false) {
+            card.flipped = true;
+          }
+        })
+      }
+    }
   }
 
   // showOrHideManually() {
