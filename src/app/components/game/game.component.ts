@@ -83,7 +83,7 @@ export class GameComponent implements OnInit {
             }
           })
         }
-      }, 2000);
+      }, 1000);
     }
   }
 
