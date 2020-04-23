@@ -16,7 +16,8 @@ export class GameComponent implements OnInit {
   public imgUrl = "https://jbrogan17.files.wordpress.com/2010/12/jared-pokemon-card-backside1.jpg";
   public ranNum = Math.floor(Math.random()*90);
   public numOfPairs = 8
-  @ViewChild("myLabel") lab;
+  public flipped = true;
+  // @ViewChild("myLabel") lab;
 
   constructor(private _gameService: GameServiceService) {}
 
