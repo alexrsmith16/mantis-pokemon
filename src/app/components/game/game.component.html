@@ -1,31 +1,21 @@
-<h2>pokemon</h2>
-<div class="container" ng-app="myApp" ng-controller="myCtrl">
-  <div
-    class="imgBack"
-    [id]="card.id"
-    *ngFor="let card of pokeArray; let i = index"
-    [style.background-image]="'url(' + card.imageUrlHiRes + ')'"
-  >
-    <img
-      [src]=""
-      alt=""
-      class="Pokemon"
-      [ngClass]="{ show: card.flipped, hide: !card.flipped }"
-      (click)="card.flipped = !card.flipped"
-    />
+<div class="image1">
+  <div class="image2">
+    <h2>pokemon</h2>
+    <div class="container">
+      <div
+        class="imgBack"
+        [id]="card.id"
+        *ngFor="let card of pokeArray; let i = index"
+        [style.background-image]="'url(' + card.imageUrlHiRes + ')'"
+      >
+        <img
+          [src]=""
+          alt=""
+          class="Pokemon"
+          [ngClass]="{ show: card.flipped, hide: !card.flipped }"
+          (click)="card.flipped = !card.flipped; isSelected()"
+        />
+      </div>
+    </div>
   </div>
-  <!-- <div
-    class="imgBack"
-    [id]="poke.id"
-    *ngFor="let poke of pokemon"
-    [style.background-image]="'url(' + poke.imageUrlHiRes + ')'"
-  >
-    <img
-      #myLabel
-      [src]=""
-      alt=""
-      class="Pokemon"
-      (click)="showOrHideManually()"
-    />
-  </div> -->
 </div>

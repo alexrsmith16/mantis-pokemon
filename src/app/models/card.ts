@@ -31,4 +31,6 @@ export interface Card {
         type: string;
         value: string;
     }[]
+    flipped: boolean;
+    selected: boolean;
 }
