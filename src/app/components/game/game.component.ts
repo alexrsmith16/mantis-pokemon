@@ -3,8 +3,6 @@ import {GameServiceService} from './game-service.service';
 import {Card} from '../../models/card';
 import { AngularFireAuth } from '@angular/fire/auth/auth';
 import * as _ from "lodash";
-import { timeInterval, timeout } from 'rxjs/operators';
-import { threadId } from 'worker_threads';
 
 
 @Component({
@@ -69,21 +67,23 @@ export class GameComponent implements OnInit {
         }
       });
       console.log(this.matched);
-      if (this.matched[0] === this.matched[1]) {
-        console.log("Match!")
-        this.pokeArray.forEach(card => {
-          if (card.id === this.matched[0]) {
-            this.pokeArray.splice(this.pokeArray.indexOf(card), 1);
-          }
-        })
-      } else {
-        console.log("Failure");
-        this.pokeArray.forEach(card => {
-          if (card.flipped === false) {
-            card.flipped = true;
-          }
-        })
-      }
+      setTimeout(() => {
+        if (this.matched[0] === this.matched[1]) {
+          console.log("Match!")
+          this.pokeArray.forEach(card => {
+            if (card.id === this.matched[0]) {
+              this.pokeArray.splice(this.pokeArray.indexOf(card), 1);
+            }
+          })
+        } else {
+          console.log("Failure");
+          this.pokeArray.forEach(card => {
+            if (card.flipped === false) {
+              card.flipped = true;
+            }
+          })
+        }
+      }, 2000);
     }
   }
 
