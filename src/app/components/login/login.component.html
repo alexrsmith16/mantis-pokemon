@@ -14,12 +14,5 @@
         </ng-template>
 
         <ng-template #authenticated>
-            <div *ngIf="auth.user$ | async as user">
-                <div class="loginbox">
-                    <h3 class="title">{{ user.displayName }}</h3>
-                    <!-- <img  [src]="user.photoURL"> -->
-                    <button (click)="auth.signOut()">Logout</button>
-                </div>
-            </div>
         </ng-template>
 </div>
