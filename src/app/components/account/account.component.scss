@@ -1,0 +1,44 @@
+.content{
+    padding-left: 50px;
+    padding-right: 50px;
+
+    .user-info {
+        display: flex;
+    
+        .user-photo {
+            border-radius: 50px;
+            width: 100px;
+        }
+    }
+
+    .stats-section {
+        margin-top: 50px;
+        display: flex;
+        
+        mat-card {
+            margin-right: 20px;
+            width: 100%;
+
+            mat-list-item {
+                padding: 10px;
+            }
+            .user-info {
+                display: flex;
+            
+                .user-photo {
+                    border-radius: 50px;
+                    width: 35px;
+                    margin-right: 10px;
+                }
+            }
+        }
+        mat-card:last-of-type {
+            margin-right: 0px;
+        }
+
+        mat-grid-tile {
+            border: 1px solid black;
+        }
+    }
+}
+
