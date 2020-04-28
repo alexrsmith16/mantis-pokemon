@@ -15,7 +15,7 @@ export class GameComponent implements OnInit {
   public imgUrl =
     "https://jbrogan17.files.wordpress.com/2010/12/jared-pokemon-card-backside1.jpg";
   public ranNum = Math.floor(Math.random() * 90);
-  public numOfPairs = 5;
+  public numOfPairs = 2;
   public counter;
   public check = 0;
   public matched = [];
@@ -31,6 +31,8 @@ export class GameComponent implements OnInit {
   ];
   public turn = 0;
   public currentPlayer = this.usersArray[0].name;
+  public victor = [];
+  public losers = [];
 
   constructor(private _gameService: GameServiceService) {}
 
@@ -78,6 +80,8 @@ export class GameComponent implements OnInit {
       element.score = 0;
     });
     this.turn = 0;
+    this.victor = [];
+    this.losers = [];
   }
 
   isSelected(card) {
@@ -130,7 +134,19 @@ export class GameComponent implements OnInit {
           });
           if (this.pokeArray.length <= 1) {
             console.log("Victory!");
-            this.pokeArray = [];
+            let victorChoice = 0;
+            this.usersArray.forEach((element) => {
+              if (element.score > victorChoice) {
+                victorChoice = element.score
+              }
+            });
+            this.usersArray.forEach((element) => {
+              if (element.score === victorChoice) {
+                this.victor.push(element.name);
+              } else {
+                this.losers.push(element.name);
+              }
+            });
           }
         } else {
           console.log("Failure");
