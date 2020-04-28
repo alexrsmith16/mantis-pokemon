@@ -2,7 +2,10 @@
   <div class="image2">
     <h2>pokemon</h2>
     <button (click)="resetGame()">Reset</button>
-    <h3>Score: {{score}}   Fails: {{fails}}</h3>
+    <div>
+      <div *ngFor="let user of usersArray">Name: {{user.name}},  Current score: {{user.score}}</div>
+    </div>
+    <h2>Turn: {{currentPlayer}}</h2>
     <div class="container">
       <div
         class="imgBack"

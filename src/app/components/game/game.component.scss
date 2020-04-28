@@ -3,11 +3,11 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: red;
+    // background-color: red;
 }
 .image2 {
     @extend .image1;
-    background-color: rgba(0, 0, 0, .7);
+    // background-color: rgba(0, 0, 0, .7);
 }
 .container {
     display: flex;
