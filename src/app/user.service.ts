@@ -35,7 +35,12 @@ export class UserService {
               uid: item.payload.doc.id,
               displayName: item.payload.doc.data().displayName,
               email: item.payload.doc.data().email,
-              photoURL: item.payload.doc.data().photoURL
+              photoURL: item.payload.doc.data().photoURL,
+              gamesPlayed: item.payload.doc.data().gamesPlayed,
+              gamesWon: item.payload.doc.data().gamesWon,
+              gamesLost: item.payload.doc.data().gamesLost,
+              playersLost: item.payload.doc.data().playersLost,
+              playersBeat: item.payload.doc.data().playersBeat
             };
           });
         }),
