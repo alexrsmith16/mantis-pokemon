@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from "@angular/core";
 import {GameServiceService} from './game-service.service';
 import {Card} from '../../models/card';
-import { AngularFireAuth } from '@angular/fire/auth/auth';
 import * as _ from "lodash";
-import { empty } from 'rxjs';
 
 
 @Component({
