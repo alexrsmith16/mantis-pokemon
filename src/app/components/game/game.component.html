@@ -2,7 +2,7 @@
   <div class="image2">
     <h2>pokemon</h2>
     <button (click)="resetGame()">Reset</button>
-    <h4>DO NOT GO FAST, WAIT FOR CODE TO CATCH UP!</h4>
+    <h3>Score: {{score}}   Fails: {{fails}}</h3>
     <div class="container">
       <div
         class="imgBack"
@@ -15,7 +15,7 @@
           alt=""
           class="Pokemon"
           [ngClass]="{ show: card.flipped, hide: !card.flipped }"
-          (click)="card.flipped = !card.flipped; isSelected()"
+          (click)="isSelected(card)"
         />
       </div>
     </div>

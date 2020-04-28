@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, Input } from "@angular/core";
 import {GameServiceService} from './game-service.service';
 import {Card} from '../../models/card';
 import { AngularFireAuth } from '@angular/fire/auth/auth';
 import * as _ from "lodash";
+import { empty } from 'rxjs';
 
 
 @Component({
@@ -17,11 +18,14 @@ export class GameComponent implements OnInit {
   public ranNum = Math.floor(Math.random()*90);
   public numOfPairs = 5
   public counter;
+  public check = 0;
   public matched = [];
   public ctr;
   public temp;
   public index;
-  // @ViewChild("myLabel") lab;
+  public score = 0;
+  public fails = 0;
+  public isDisabled: boolean = false;
 
   constructor(private _gameService: GameServiceService) {}
 
@@ -35,26 +39,17 @@ export class GameComponent implements OnInit {
         this.pokemon = data && data.cards ? data.cards : [];
 
         let randomSet = this.pokemon.slice(this.ranNum, this.ranNum + this.numOfPairs);
-        // let secondSet = randomSet.slice();
         let secondSet = _.cloneDeep(randomSet);
-        // secondSet.forEach(element => {
-        //   element.id = "2-" + element.id;
-        // });
 
         this.pokeArray = randomSet.concat(secondSet);
         console.log(this.pokeArray);
         
         this.ctr = this.pokeArray.length;
         while (this.ctr > 0) {
-          // console.log(this.ctr);
           this.index = Math.floor(Math.random() * this.ctr);
-          // console.log(this.index);
           this.ctr--;
-          // console.log(this.ctr);
           this.temp = this.pokeArray[this.ctr];
-          // console.log(this.temp);
           this.pokeArray[this.ctr] =  this.pokeArray[this.index];
-          // console.log(this.pokeArray);
           this.pokeArray[this.index] = this.temp;
         }
 
@@ -71,26 +66,48 @@ export class GameComponent implements OnInit {
 
   resetGame() {
     this.getPokemon();
+    this.score = 0;
+    this.fails = 0;
   }
 
-  isSelected() {
+  isSelected(card) {
+    if (this.isDisabled) {
+      return
+    }
+    card.flipped = !card.flipped; 
+    // console.log(this.check);
+    // if (this.check >= 1) {
+    //   this.isDisabled = true;
+    //   this.check = 0;
+    // } else {
+    //   this.check++;
+    // }
     this.counter = 0;
     this.matched = [];
-    // thread.sleep(2000)
     this.pokeArray.forEach(card => {
       if (card.flipped === false) {
         this.counter += 1;
       }
     });
-    if (this.counter === 2) {
+    console.log(this.counter);
+    if (this.counter >= 2) {
+      this.isDisabled = true;
       this.pokeArray.forEach(card => {
         if (card.flipped === false) {
           this.matched.push(card.id);
         }
       });
+      this.pokeArray.forEach(card => {
+        if (card.flipped === false) {
+          this.matched.push(card.id);
+        }
+      });
+      console.log(this.matched[0], this.matched[3], this.matched);
       setTimeout(() => {
-        if (this.matched[0] === this.matched[1]) {
+        if (this.matched[0] === this.matched[3] && this.matched[4] === undefined) {
+          this.isDisabled = false;
           console.log("Match!")
+          this.score++;
           this.pokeArray.forEach(card => {
             if (card.id === this.matched[0]) {
               this.pokeArray.splice(this.pokeArray.indexOf(card), 1);
@@ -106,7 +123,9 @@ export class GameComponent implements OnInit {
             this.pokeArray = [];
           }
         } else {
+          this.isDisabled = false;
           console.log("Failure");
+          this.fails++;
           this.pokeArray.forEach(card => {
             if (card.flipped === false) {
               card.flipped = true;
@@ -116,15 +135,4 @@ export class GameComponent implements OnInit {
       }, 1000);
     }
   }
-
-  // showOrHideManually() {
-  //   this.flipped = !this.flipped;
-  //   if(this.flipped) {
-  //     this.lab.nativeElement.classList.add("show");
-  //     this.lab.nativeElement.classList.remove("hide");
-  //   } else {
-  //     this.lab.nativeElement.classList.add("hide");
-  //     this.lab.nativeElement.classList.remove("show");
-  //   }
-  // }
 }
