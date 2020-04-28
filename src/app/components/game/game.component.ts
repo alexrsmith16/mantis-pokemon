@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Input } from "@angular/core";
 import { GameServiceService } from "./game-service.service";
 import { Card } from "../../models/card";
 import * as _ from "lodash";
+import { UserService } from "../../user.service";
 
 @Component({
   selector: "app-game",
@@ -80,6 +81,9 @@ export class GameComponent implements OnInit {
   }
 
   isSelected(card) {
+    if (!card.flipped) {
+      return;
+    }
     if (this.isDisabled) {
       return;
     }
