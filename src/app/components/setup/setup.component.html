@@ -1,33 +1,37 @@
+<link href="setup.component.scss" />
 
-<link href="setup.component.scss">
+<div id="container">
+  <div id="background"></div>
+  <div id="backgroundShader"></div>
 
-<div id="container">
-    <div id="background"></div>
-    <div id="backgroundShader"></div>
+  <div id="settingsCard">
+    <div class="matchAmountContainer">
+      <h3>How many matches would you like to play with?</h3>
+      <h5>(Max of {{ maxPairs }})</h5>
+      <input type="number" (keyup)="setCards($event)" />
 
-    <div id="settingsCard">
-        <div class="matchAmountContainer">
-            <p>How many matches would you like to play with?</p>
-                <input type='number'>
+      <p>Would you like to save your settings?</p>
+      <input type="checkbox" />
+    </div>
 
-                <p>Would you like to save your settings?</p>
-                <input type='checkbox'>
-        </div>
-
-        <div id="playerAmountContainer">
-            <p>How many Players are there?</p>
-            <select value='1' id="playerAmountValue" onchange="console.log('playerAmountChanged');">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-            <div id="playerSelection">
-
-            </div>
-        </div>
-        <div>
+    <div id="playerAmountContainer">
+      <p>How many Players are there?</p>
+      <select
+        [(ngModel)]="selectedValue"
+        id="playerAmountValue"
+      >
+        <option *ngFor="let option of options" [value]="option.value">
+          {{ option.name }}
+        </option>
+      </select>
+      <div id="playerSelection"></div>
+      select value: {{selectedValue}}
+    </div>
+    <!-- <div>
             {{ users$ | async | json }}
-        </div>
-    </div>
+        </div> -->
+    <div>
+        <a routerLink="/game" routerLinkActive="active"><button (click)="playGame()">Play Game</button></a>
+    </div>
+  </div>
 </div>

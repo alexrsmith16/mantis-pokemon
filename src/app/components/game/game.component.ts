@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { GameServiceService } from "./game-service.service";
 import { Card } from "../../models/card";
 import * as _ from "lodash";
+// import { SetupComponent } from '../setup/setup.component';
 import { UserService } from "../../user.service";
 
 @Component({
@@ -16,6 +17,7 @@ export class GameComponent implements OnInit {
     "https://jbrogan17.files.wordpress.com/2010/12/jared-pokemon-card-backside1.jpg";
   public ranNum = Math.floor(Math.random() * 89);
   public numOfPairs = 10;
+  // public numOfPairs = SetupComponent.numOfCards;
   public counter;
   public check = 0;
   public matched = [];
@@ -38,6 +40,9 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPokemon();
+    let setup = this._gameService.setupGet();
+    // this.numOfPairs = setup.numOfCards;
+    console.log(this._gameService.setupGet())
   }
 
   getPokemon() {
