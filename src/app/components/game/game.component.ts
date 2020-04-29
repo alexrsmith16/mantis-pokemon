@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { GameServiceService } from "./game-service.service";
 import { Card } from "../../models/card";
 import * as _ from "lodash";
@@ -14,8 +14,8 @@ export class GameComponent implements OnInit {
   public pokemon;
   public imgUrl =
     "https://jbrogan17.files.wordpress.com/2010/12/jared-pokemon-card-backside1.jpg";
-  public ranNum = Math.floor(Math.random() * 90);
-  public numOfPairs = 2;
+  public ranNum = Math.floor(Math.random() * 89);
+  public numOfPairs = 10;
   public counter;
   public check = 0;
   public matched = [];
