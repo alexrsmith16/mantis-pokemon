@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { Setup } from 'src/app/models/setup';
 // import {Observable} from 'rxjs/Observable';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class GameServiceService {
 
-  public scope: Object;
+  public scope: Setup;
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +16,7 @@ export class GameServiceService {
     return this.http.get("https://api.pokemontcg.io/v1/cards/");
   }
 
-  public setupGet(): Object {
+  public setupGet(): Setup {
     return this.scope;
   }
 

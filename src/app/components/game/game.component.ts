@@ -4,6 +4,7 @@ import { Card } from "../../models/card";
 import * as _ from "lodash";
 // import { SetupComponent } from '../setup/setup.component';
 import { UserService } from "../../user.service";
+import { Setup } from 'src/app/models/setup';
 
 @Component({
   selector: "app-game",
@@ -41,8 +42,8 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.getPokemon();
     let setup = this._gameService.setupGet();
-    // this.numOfPairs = setup.numOfCards;
-    console.log(this._gameService.setupGet())
+    this.numOfPairs = setup.numOfCards;
+    console.log(this.numOfPairs)
   }
 
   getPokemon() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +9,13 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(public auth: AuthService) { }
+  constructor(
+    public auth: AuthService,
+    private location: Location
+    ) {
+      console.log("location:");
+      console.log(this.location.path());
+    }
 
   ngOnInit(): void {
   }
