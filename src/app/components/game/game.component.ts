@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { GameServiceService } from "./game-service.service";
 import { Card } from "../../models/card";
 import * as _ from "lodash";
-// import { SetupComponent } from '../setup/setup.component';
 import { UserService } from "../../user.service";
 import { Setup } from 'src/app/models/setup';
 
@@ -18,7 +17,6 @@ export class GameComponent implements OnInit {
     "https://jbrogan17.files.wordpress.com/2010/12/jared-pokemon-card-backside1.jpg";
   public ranNum = Math.floor(Math.random() * 89);
   public numOfPairs = 10;
-  // public numOfPairs = SetupComponent.numOfCards;
   public counter;
   public check = 0;
   public matched = [];
@@ -58,7 +56,6 @@ export class GameComponent implements OnInit {
         let secondSet = _.cloneDeep(randomSet);
 
         this.pokeArray = randomSet.concat(secondSet);
-        // console.log(this.pokeArray);
 
         this.ctr = this.pokeArray.length;
         while (this.ctr > 0) {
@@ -68,8 +65,6 @@ export class GameComponent implements OnInit {
           this.pokeArray[this.ctr] = this.pokeArray[this.index];
           this.pokeArray[this.index] = this.temp;
         }
-
-        // console.log(this.pokeArray);
 
         this.pokeArray.forEach((element) => {
           element.flipped = true;
@@ -97,7 +92,6 @@ export class GameComponent implements OnInit {
     if (this.isDisabled) {
       return;
     }
-    // console.log(this.currentPlayer);
     card.flipped = !card.flipped;
     this.counter = 0;
     this.matched = [];
@@ -106,7 +100,6 @@ export class GameComponent implements OnInit {
         this.counter += 1;
       }
     });
-    // console.log(this.counter);
     if (this.counter >= 2) {
       this.isDisabled = true;
       this.pokeArray.forEach((card) => {
@@ -119,7 +112,6 @@ export class GameComponent implements OnInit {
           this.matched.push(card.id);
         }
       });
-      // console.log(this.matched[0], this.matched[3], this.matched);
       setTimeout(() => {
         if (
           this.matched[0] === this.matched[3] &&
@@ -127,7 +119,6 @@ export class GameComponent implements OnInit {
         ) {
           console.log("Match!");
           this.usersArray[this.turn].score++;
-          // console.log(this.usersArray[this.turn]);
           this.pokeArray.forEach((card) => {
             if (card.id === this.matched[0]) {
               this.pokeArray.splice(this.pokeArray.indexOf(card), 1);
@@ -168,7 +159,6 @@ export class GameComponent implements OnInit {
           this.currentPlayer = this.usersArray[this.turn].name;
         }
         this.isDisabled = false;
-        // console.log(this.turn, this.currentPlayer);
       }, 1000);
     }
   }
