@@ -31,6 +31,7 @@ export class GameComponent implements OnInit {
     { name: "qwerty", score: 0 },
   ];
   public turn = 0;
+  public round = 0;
   public currentPlayer = this.usersArray[0].name;
   public victor = [];
   public losers = [];
@@ -81,6 +82,7 @@ export class GameComponent implements OnInit {
       element.score = 0;
     });
     this.turn = 0;
+    this.round = 0;
     this.victor = [];
     this.losers = [];
   }
@@ -155,6 +157,7 @@ export class GameComponent implements OnInit {
           this.turn++;
           if (this.turn >= this.usersArray.length) {
             this.turn = 0;
+            this.round++;
           }
           this.currentPlayer = this.usersArray[this.turn].name;
         }
