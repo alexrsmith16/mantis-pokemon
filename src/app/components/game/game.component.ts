@@ -4,6 +4,7 @@ import { Card } from "../../models/card";
 import * as _ from "lodash";
 import { UserService } from "../../user.service";
 import { Setup } from 'src/app/models/setup';
+import { single } from 'rxjs/operators';
 
 @Component({
   selector: "app-game",
@@ -17,6 +18,7 @@ export class GameComponent implements OnInit {
     "https://jbrogan17.files.wordpress.com/2010/12/jared-pokemon-card-backside1.jpg";
   public ranNum = Math.floor(Math.random() * 89);
   public numOfPairs = 10;
+  public numOfPlayers;
   public counter;
   public check = 0;
   public matched = [];
@@ -25,24 +27,31 @@ export class GameComponent implements OnInit {
   public index;
   public isDisabled: boolean = false;
   public usersArray = [
-    { name: "abc", score: 0 },
-    { name: "xyz", score: 0 },
-    { name: "def", score: 0 },
-    { name: "qwerty", score: 0 },
+    { name: "Test-1", score: 0 },
+    // { name: "Test-2", score: 0 },
+    // { name: "Test-3", score: 0 },
+    // { name: "Test-4", score: 0 },
   ];
   public turn = 0;
   public round = 0;
+  public remaining;
   public currentPlayer = this.usersArray[0].name;
   public victor = [];
   public losers = [];
+  public difficulty = "medium";
+  public roundsRemaining;
 
   constructor(private _gameService: GameServiceService) {}
 
   ngOnInit(): void {
     this.getPokemon();
     let setup = this._gameService.setupGet();
-    this.numOfPairs = setup.numOfCards;
-    console.log(this.numOfPairs)
+    this.numOfPairs = Number(setup.numOfCards);
+    this.numOfPlayers = setup.numOfPlayers;
+    this.remaining = setup.numOfCards
+    if (this.numOfPlayers.length <= 1) {
+      this.singlePlayer();
+    }
   }
 
   getPokemon() {
@@ -87,6 +96,16 @@ export class GameComponent implements OnInit {
     this.losers = [];
   }
 
+  singlePlayer() {
+    if (this.difficulty === "easy") {
+      this.roundsRemaining = this.numOfPairs * 3;
+    } else if (this.difficulty === "medium") {
+      this.roundsRemaining = this.numOfPairs * 2;
+    } else if (this.difficulty === "hard") {
+      this.roundsRemaining = Math.floor(this.numOfPairs * 1.5);
+    }
+  }
+
   isSelected(card) {
     if (!card.flipped) {
       return;
@@ -104,6 +123,7 @@ export class GameComponent implements OnInit {
     });
     if (this.counter >= 2) {
       this.isDisabled = true;
+      this.roundsRemaining--;
       this.pokeArray.forEach((card) => {
         if (card.flipped === false) {
           this.matched.push(card.id);
@@ -120,6 +140,7 @@ export class GameComponent implements OnInit {
           this.matched[4] === undefined
         ) {
           console.log("Match!");
+          this.remaining--;
           this.usersArray[this.turn].score++;
           this.pokeArray.forEach((card) => {
             if (card.id === this.matched[0]) {
@@ -147,6 +168,9 @@ export class GameComponent implements OnInit {
               }
             });
           }
+        } else if (this.roundsRemaining === 0) {
+          console.log("You Lose!")
+          this.pokeArray = [];
         } else {
           console.log("Failure");
           this.pokeArray.forEach((card) => {
