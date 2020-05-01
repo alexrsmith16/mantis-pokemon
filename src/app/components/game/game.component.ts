@@ -53,7 +53,7 @@ export class GameComponent implements OnInit {
     this.getPokemon();
     let setup = this._gameService.setupGet();
     this.numOfPairs = Number(setup.numOfCards);
-    this.numOfPlayers = setup.numOfPlayers;
+    // this.numOfPlayers = setup.numOfPlayers;
     this.remaining = setup.numOfCards
     if (this.numOfPlayers.length <= 1) {
       this.singlePlayer();

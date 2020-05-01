@@ -1,4 +1,6 @@
 export interface Setup {
     numOfCards: number,
-    numOfPlayers: []
+    numOfPlayers: {
+      name: string
+    }[]
   }

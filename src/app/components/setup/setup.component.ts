@@ -55,22 +55,40 @@ export class SetupComponent implements OnInit {
   public options = [
     {
       value: 1,
-      name : "1"
+      name: "1"
     },
     {
       value: 2,
-      name : "2"
+      name: "2"
     },
     {
       value: 3,
-      name : "3"
+      name: "3"
     },
     {
       value: 4,
-      name : "4"
+      name: "4"
     }
   ]
-  public gameComp: Setup;
+  public playerArray = [
+    {
+      name: "Example 1"
+    },
+    {
+      name: "Example 2"
+    },
+    {
+      name: "Example 3"
+    },
+    {
+      name: "Example 4"
+    }
+  ]
+  public tempPlayerArray;
+  public gameComp: Setup = {
+    numOfCards: 0,
+    numOfPlayers: []
+  };
 
   constructor(private userService: UserService, private _gameService: GameServiceService) {}
 
@@ -82,22 +100,25 @@ export class SetupComponent implements OnInit {
     this.users$ = this.userService.getUsersObservable();
   }
 
-  setPlayerSelect(value: number) {
-    document.getElementById('playerSelection').innerHTML = '';
-    for (let i = 0; i < value; i++) {
-      document.getElementById('playerSelection').innerHTML += `<div>Player ${i + 1}:   <select id='playerNumber${i+1}><option value='example1'>Example 1</option><option value='example2'>Example 2</option><option value='example3'>Example 3</option><option value='example4'>Example 4</option></select><div>`;
-    }
-  }
+  // setPlayerSelect(value: number) {
+  //   document.getElementById('playerSelection').innerHTML = '';
+  //   for (let i = 0; i < value; i++) {
+  //     document.getElementById('playerSelection').innerHTML += `<div>Player ${i + 1}:   <select id='playerNumber${i+1}><option value='example1'>Example 1</option><option value='example2'>Example 2</option><option value='example3'>Example 3</option><option value='example4'>Example 4</option></select><div>`;
+  //   }
+  // }
 
   playGame() {
+    console.log(this.numOfCards);
     this.gameComp.numOfCards = this.numOfCards;
-    // this.gameComp.numOfPlayers = this.selectedValue;
-    console.log(this.gameComp)
+    this.gameComp.numOfPlayers = this.tempPlayerArray;
+    //its passing the original array, not the array that I changed with the select HTML:31-35, (NOT WORKING) --JOHN
     this._gameService.setupSet(this.gameComp);
+    console.log(this.gameComp)
   }
 
   playerNumChange(value) {
     this.selectedValue = +value;
-    console.log(typeof this.selectedValue);
+    // console.log(typeof this.selectedValue);
+    this.tempPlayerArray = this.playerArray.slice(0, value);
   }
 }
