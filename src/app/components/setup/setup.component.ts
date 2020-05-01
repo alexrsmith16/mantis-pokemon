@@ -3,6 +3,7 @@ import { UserService } from '../../user.service';
 import { Observable } from 'rxjs';
 import { GameServiceService } from "../game/game-service.service";
 import { User } from '../../models/user'
+import { Setup } from 'src/app/models/setup'
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
@@ -15,7 +16,7 @@ export class SetupComponent implements OnInit {
   public users$: Observable<User[]>;
   public numOfCards;
   public maxPairs = 10;
-  public selectedValue;
+  public selectedValue = 1;
   public playerAmount: number;
   public player1;
   public player2;
@@ -69,10 +70,7 @@ export class SetupComponent implements OnInit {
       name : "4"
     }
   ]
-  public gameComp = {
-    numOfCards: "",
-    numOfPlayers: ""
-  }
+  public gameComp: Setup;
 
   constructor(private userService: UserService, private _gameService: GameServiceService) {}
 
@@ -93,9 +91,13 @@ export class SetupComponent implements OnInit {
 
   playGame() {
     this.gameComp.numOfCards = this.numOfCards;
-    this.gameComp.numOfPlayers = this.selectedValue;
+    // this.gameComp.numOfPlayers = this.selectedValue;
     console.log(this.gameComp)
     this._gameService.setupSet(this.gameComp);
   }
 
+  playerNumChange(value) {
+    this.selectedValue = +value;
+    console.log(typeof this.selectedValue);
+  }
 }

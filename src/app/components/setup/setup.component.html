@@ -19,9 +19,8 @@
    <div id="playerAmountContainer">
       <p>How many Players are there?</p>
       <select
-        [(ngModel)]="selectedValue"
-        id="playerAmountValue"
-        value='1'
+        [value]="selectedValue"
+        (input)="playerNumChange($event.target.value)"
       >
         <option *ngFor="let option of options" [value]="option.value">
           {{ option.name }}
