@@ -19,10 +19,12 @@ export class GameComponent implements OnInit {
   public ranNum = Math.floor(Math.random() * 89);
   public numOfPairs = 10;
   public numOfPlayers;
-  public player1 = 'example1';
-  public player2 = 'example2';
-  public player3 = 'example3';
-  public player4 = 'example4';
+  public playerArray = {
+    player1: 'example1',
+    player2: 'example2',
+    player3: 'example3',
+    player4: 'example4'
+  }
   public counter;
   public check = 0;
   public matched = [];
