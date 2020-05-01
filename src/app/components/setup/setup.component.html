@@ -1,37 +1,44 @@
 <link href="setup.component.scss" />
-
 <div id="container">
   <div id="background"></div>
   <div id="backgroundShader"></div>
 
   <div id="settingsCard">
-    <div class="matchAmountContainer">
-      <h3>How many matches would you like to play with?</h3>
-      <h5>(Max of {{ maxPairs }})</h5>
-      <input type="number" (keyup)="setCards($event)" />
 
-      <p>Would you like to save your settings?</p>
-      <input type="checkbox" />
+    <div id="matchAmountContainer">
+      <h3>How many matches would you like to play with?</h3>
+
+    <select id='xyz' [(ngModel)]='numOfCards' value ='4'>
+        <option *ngFor='let option of optionsMatches' [value]='option.value'>
+          {{option.name}}
+        </option>
+      </select>
+
     </div>
 
-    <div id="playerAmountContainer">
+   <div id="playerAmountContainer">
       <p>How many Players are there?</p>
       <select
         [(ngModel)]="selectedValue"
         id="playerAmountValue"
+        value='1'
       >
         <option *ngFor="let option of options" [value]="option.value">
           {{ option.name }}
         </option>
       </select>
-      <div id="playerSelection"></div>
-      select value: {{selectedValue}}
+
+      <div id="playerSelection">
+        {{setPlayerSelect(selectedValue)}}
+      </div>
+
+      
     </div>
-    <!-- <div>
-            {{ users$ | async | json }}
-        </div> -->
     <div>
         <a routerLink="/game" routerLinkActive="active"><button (click)="playGame()">Play Game</button></a>
     </div>
+
+      
+
   </div>
 </div>
