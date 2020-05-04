@@ -4,6 +4,8 @@
   <div id="backgroundShader"></div>
 
   <div id="settingsCard">
+    
+  <div>
 
     <div id="matchAmountContainer">
       <h3>How many matches would you like to play with?</h3>
@@ -28,19 +30,30 @@
         </option>
       </select>
 
-      <select id="playerSelection" *ngFor="let temp of tempPlayerArray">
+      <select class='optionClass' id="playerSelection" *ngFor="let temp of tempPlayerArray; index as i" [(ngModel)]='playerNamesArray[i]'>
         <!-- Doesn't auto complete "1" until another option has been selected --JOHN -->
-        <option *ngFor="let tempPlayer of playerArray" [value]="tempPlayer.name">{{tempPlayer.name}}</option>
+        <option *ngFor="let tempPlayer of playerArray; index as i" [value]="tempPlayer.name">{{tempPlayer.name}}</option>
       </select>
       <!-- Currently still needs to know which player is selected in the option, when passing to gameComp --JOHN -->
-
+      <div id='difficultyContainer'>
+        <p>What difficulty would you like to play on?</p>
+        <select [(ngModel)]='gameComp.difficulty'>
+          <option value='easy'>Easy</option>
+          <option value='normal'>Normal</option>
+          <option value='hard'>Hard</option>
+        </select>
+      </div>
       
     </div>
-    <div>
+  
+  </div>
+  
+
+    <div id='finallization'>
         <a routerLink="/game" routerLinkActive="active"><button (click)="playGame()">Play Game</button></a>
     </div>
 
-      
-
   </div>
+
+
 </div>
