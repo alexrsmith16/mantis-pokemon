@@ -52,7 +52,7 @@
 
 #playerAmountContainer {
     width: 500px;
-    height: 200px;
+    height: 350px;
     margin: 10px;
     background-color: black;
     border: darkblue solid 1px;
@@ -60,11 +60,39 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    position: solid;
 }
 
 #playerSelection {
+    position: solid;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+#difficultyContainer {
+    position: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 200px;
+}
+
+.optionClass {
+    margin-top: 20px;
+}
+
+#finallization {
+    height: 300px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#finallization a {
+    margin-top: 50px;
 }

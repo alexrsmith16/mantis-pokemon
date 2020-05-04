@@ -18,10 +18,7 @@ export class SetupComponent implements OnInit {
   public maxPairs = 10;
   public selectedValue = 1;
   public playerAmount: number;
-  public player1;
-  public player2;
-  public player3;
-  public player4;
+  public playerNamesArray: string[] = [null,null,null,null];
   public optionsMatches = [
     {
       value: 4,
@@ -87,7 +84,9 @@ export class SetupComponent implements OnInit {
   public tempPlayerArray;
   public gameComp: Setup = {
     numOfCards: 0,
-    numOfPlayers: []
+    numOfPlayers: [],
+    playerNames: [],
+    difficulty: 'easy'
   };
 
   constructor(private userService: UserService, private _gameService: GameServiceService) {}
@@ -100,25 +99,22 @@ export class SetupComponent implements OnInit {
     this.users$ = this.userService.getUsersObservable();
   }
 
-  // setPlayerSelect(value: number) {
-  //   document.getElementById('playerSelection').innerHTML = '';
-  //   for (let i = 0; i < value; i++) {
-  //     document.getElementById('playerSelection').innerHTML += `<div>Player ${i + 1}:   <select id='playerNumber${i+1}><option value='example1'>Example 1</option><option value='example2'>Example 2</option><option value='example3'>Example 3</option><option value='example4'>Example 4</option></select><div>`;
-  //   }
-  // }
-
   playGame() {
-    console.log(this.numOfCards);
+    for (let i = 0; i < this.playerNamesArray.length; i++) {
+      if (this.playerNamesArray[i] === null) {
+        this.playerNamesArray.splice(i, 5);
+        break;
+      }
+    }
     this.gameComp.numOfCards = this.numOfCards;
     this.gameComp.numOfPlayers = this.tempPlayerArray;
-    //its passing the original array, not the array that I changed with the select HTML:31-35, (NOT WORKING) --JOHN
+    this.gameComp.playerNames = this.playerNamesArray;
     this._gameService.setupSet(this.gameComp);
     console.log(this.gameComp)
   }
 
   playerNumChange(value) {
     this.selectedValue = +value;
-    // console.log(typeof this.selectedValue);
     this.tempPlayerArray = this.playerArray.slice(0, value);
   }
 }
