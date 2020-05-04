@@ -3,6 +3,9 @@ export interface Setup {
     numOfPlayers: {
       name: string
     }[]
-    playerNames: string[];
+    playerNames: {
+      name: string,
+      score: number
+    }[];
     difficulty: string,
   }

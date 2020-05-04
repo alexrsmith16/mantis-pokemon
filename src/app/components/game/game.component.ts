@@ -54,11 +54,7 @@ export class GameComponent implements OnInit {
     this.numOfPlayers = setup.playerNames;
     this.remaining = setup.numOfCards;
     this.difficulty = setup.difficulty;
-    for (let index = 0; index < this.usersArray.length; index++) {
-      this.usersArray.forEach((element) => {
-        element.name = setup.playerNames[index];
-      });
-    }
+    this.usersArray = setup.playerNames;
     console.log(this.usersArray);
     if (this.numOfPlayers.length <= 1) {
       this.singlePlayer();
