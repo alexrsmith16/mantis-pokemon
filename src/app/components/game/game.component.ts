@@ -29,6 +29,7 @@ export class GameComponent implements OnInit {
   public temp;
   public index;
   public isDisabled: boolean = false;
+  public tempUsersArray = [];
   public usersArray = [
     { name: "Test-1", score: 0 },
     { name: "Test-2", score: 0 },
@@ -54,9 +55,15 @@ export class GameComponent implements OnInit {
     this.numOfPlayers = setup.playerNames;
     this.remaining = setup.numOfCards;
     this.difficulty = setup.difficulty;
-    this.usersArray = setup.playerNames;
-    console.log(this.usersArray);
-    if (this.numOfPlayers.length <= 1) {
+    setup.playerNames.forEach((element) => {
+      if (element.name !== "") {
+        this.tempUsersArray.push(element);
+      }
+    });
+    this.usersArray = this.tempUsersArray;
+    this.currentPlayer = this.usersArray[0].name;
+    console.log(this.usersArray.length);
+    if (this.usersArray.length <= 1) {
       this.singlePlayer();
     }
   }

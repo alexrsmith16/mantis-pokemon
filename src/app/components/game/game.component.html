@@ -6,7 +6,7 @@
       <div *ngFor="let user of usersArray">Name: {{user.name}},  Current score: {{user.score}}</div>
     </div>
     <h2>Round: {{round}}, Turn: {{currentPlayer}}, Matches Remaining: {{remaining}}</h2>
-    <div *ngIf="numOfPlayers.length <= 1">Rounds Remaining: {{roundsRemaining}}</div>
+    <div *ngIf="usersArray.length <= 1">Rounds Remaining: {{roundsRemaining}}</div>
     <div class="container">
       <div
         class="imgBack"
