@@ -31,9 +31,9 @@ export class GameComponent implements OnInit {
   public isDisabled: boolean = false;
   public usersArray = [
     { name: "Test-1", score: 0 },
-    // { name: "Test-2", score: 0 },
-    // { name: "Test-3", score: 0 },
-    // { name: "Test-4", score: 0 },
+    { name: "Test-2", score: 0 },
+    { name: "Test-3", score: 0 },
+    { name: "Test-4", score: 0 },
   ];
   public turn = 0;
   public round = 0;
@@ -54,6 +54,12 @@ export class GameComponent implements OnInit {
     this.numOfPlayers = setup.playerNames;
     this.remaining = setup.numOfCards;
     this.difficulty = setup.difficulty;
+    for (let index = 0; index < this.usersArray.length; index++) {
+      this.usersArray.forEach((element) => {
+        element.name = setup.playerNames[index];
+      });
+    }
+    console.log(this.usersArray);
     if (this.numOfPlayers.length <= 1) {
       this.singlePlayer();
     }
