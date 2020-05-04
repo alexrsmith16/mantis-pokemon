@@ -185,6 +185,7 @@ export class GameComponent implements OnInit {
                 this.losers.push(element.name);
               }
             });
+            console.log("victor: " + this.victor + ", loser: " + this.losers);
           }
         } else if (this.roundsRemaining === 0) {
           console.log("You Lose!")
