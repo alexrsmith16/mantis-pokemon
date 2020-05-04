@@ -16,7 +16,7 @@ export class SetupComponent implements OnInit {
   public users$: Observable<User[]>;
   public numOfCards;
   public maxPairs = 10;
-  public selectedValue = 1;
+  public selectedValue = 0;
   public playerAmount: number;
   public playerNamesArray: string[] = [null,null,null,null];
   public optionsMatches = [
@@ -97,6 +97,7 @@ export class SetupComponent implements OnInit {
 
   getUsers() {
     this.users$ = this.userService.getUsersObservable();
+    console.log(this.users$);
   }
 
   playGame() {
