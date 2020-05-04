@@ -30,7 +30,7 @@
         </option>
       </select>
 
-      <select class='optionClass' id="playerSelection" *ngFor="let temp of tempPlayerArray; index as i" [(ngModel)]='playerNamesArray[i]'>
+      <select class='optionClass' id="playerSelection" *ngFor="let temp of tempPlayerArray; index as i" [(ngModel)]='tempPlayerNamesArray[i]'>
         <!-- Doesn't auto complete "1" until another option has been selected --JOHN -->
         <option *ngFor="let tempPlayer of users$ | async; index as i" [value]="tempPlayer.displayName">{{tempPlayer.displayName}}</option>
       </select>

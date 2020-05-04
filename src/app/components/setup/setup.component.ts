@@ -18,6 +18,7 @@ export class SetupComponent implements OnInit {
   public maxPairs = 10;
   public selectedValue = 0;
   public playerAmount: number;
+  public tempPlayerNamesArray = [];
   public playerNamesArray = [
     {
       name: "",
@@ -129,6 +130,9 @@ export class SetupComponent implements OnInit {
     }
     this.gameComp.numOfCards = this.numOfCards;
     this.gameComp.numOfPlayers = this.tempPlayerArray;
+    for (let index = 0; index < this.tempPlayerNamesArray.length; index++) {
+      this.playerNamesArray[index].name = this.tempPlayerNamesArray[index];
+    }
     this.gameComp.playerNames = this.playerNamesArray;
     this._gameService.setupSet(this.gameComp);
     console.log(this.users$);
