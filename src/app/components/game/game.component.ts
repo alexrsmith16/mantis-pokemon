@@ -2,9 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { GameServiceService } from "./game-service.service";
 import { Card } from "../../models/card";
 import * as _ from "lodash";
-import { UserService } from "../../user.service";
-import { Setup } from 'src/app/models/setup';
-import { single } from 'rxjs/operators';
 
 @Component({
   selector: "app-game",
@@ -54,8 +51,9 @@ export class GameComponent implements OnInit {
     this.getPokemon();
     let setup = this._gameService.setupGet();
     this.numOfPairs = Number(setup.numOfCards);
-    this.numOfPlayers = setup.numOfPlayers;
-    this.remaining = setup.numOfCards
+    this.numOfPlayers = setup.playerNames;
+    this.remaining = setup.numOfCards;
+    this.difficulty = setup.difficulty;
     if (this.numOfPlayers.length <= 1) {
       this.singlePlayer();
     }
