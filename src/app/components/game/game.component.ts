@@ -46,6 +46,7 @@ export class GameComponent implements OnInit {
   public losers = [];
   public difficulty = "medium";
   public roundsRemaining;
+  public resetRounds;
 
   constructor(private _gameService: GameServiceService) {}
 
@@ -53,7 +54,7 @@ export class GameComponent implements OnInit {
     this.getPokemon();
     let setup = this._gameService.setupGet();
     this.numOfPairs = Number(setup.numOfCards);
-    // this.numOfPlayers = setup.numOfPlayers;
+    this.numOfPlayers = setup.numOfPlayers;
     this.remaining = setup.numOfCards
     if (this.numOfPlayers.length <= 1) {
       this.singlePlayer();
@@ -100,15 +101,19 @@ export class GameComponent implements OnInit {
     this.round = 0;
     this.victor = [];
     this.losers = [];
+    this.roundsRemaining = this.resetRounds;
   }
 
   singlePlayer() {
     if (this.difficulty === "easy") {
       this.roundsRemaining = this.numOfPairs * 3;
+      this.resetRounds = this.numOfPairs * 3;
     } else if (this.difficulty === "medium") {
       this.roundsRemaining = this.numOfPairs * 2;
+      this.resetRounds = this.numOfPairs * 2;
     } else if (this.difficulty === "hard") {
       this.roundsRemaining = Math.floor(this.numOfPairs * 1.5);
+      this.resetRounds = Math.floor(this.numOfPairs * 1.5);
     }
   }
 
