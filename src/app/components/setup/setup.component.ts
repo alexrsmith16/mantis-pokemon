@@ -12,7 +12,8 @@ import { ValueConverter } from "@angular/compiler/src/render3/view/template";
   styleUrls: ["./setup.component.scss"],
 })
 export class SetupComponent implements OnInit {
-  public users$: Observable<User[]>;
+
+  public users$: Observable<User[]> = this.userService.getUsersObservable();
   public numOfCards;
   public maxPairs = 10;
   public selectedValue = 0;
@@ -112,11 +113,11 @@ export class SetupComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
+    this.users$.subscribe(users => { console.log(users) })
   }
 
   getUsers() {
     this.users$ = this.userService.getUsersObservable();
-    console.log(this.users$);
   }
 
   playGame() {
@@ -130,7 +131,7 @@ export class SetupComponent implements OnInit {
     this.gameComp.numOfPlayers = this.tempPlayerArray;
     this.gameComp.playerNames = this.playerNamesArray;
     this._gameService.setupSet(this.gameComp);
-    console.log(this.gameComp);
+    console.log(this.users$);
   }
 
   playerNumChange(value) {
