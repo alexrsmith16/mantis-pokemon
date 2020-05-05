@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentChangeAction } from '@angular/fire/firestore';
 import { User } from './models/user';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,25 @@ export class UserService {
         catchError(this.errorHandler)
       );
   }
+
+  getUser(uid: string): User {
+    let temp: User;
+    this.db.doc<User>(`users/${uid}`).valueChanges().subscribe(value => {
+      temp = value;
+    });
+    console.log(temp);
+    return temp;
+  }
+  
+  // getUser(uid: string): User {
+  //   this.db.doc<User>(`users/${uid}`).valueChanges().pipe(
+  //     tap(user => {
+  //       console.log("getUser:");
+  //       console.log(user)
+  //       return user
+  //     })
+  //   )
+  // }
 
   getUsersObservable(): Observable<User[]> {
     return this.usersRef.snapshotChanges()

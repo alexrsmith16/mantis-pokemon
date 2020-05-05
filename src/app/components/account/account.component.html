@@ -13,11 +13,11 @@
         <mat-card>
             <mat-grid-list cols="2" rowHeight="2:1">
                 <mat-grid-tile>Games Played:</mat-grid-tile>
-                <mat-grid-tile>5</mat-grid-tile>
+                <mat-grid-tile>{{ user.gamesPlayed }}</mat-grid-tile>
                 <mat-grid-tile>Games Lost:</mat-grid-tile>
-                <mat-grid-tile>5</mat-grid-tile>
+                <mat-grid-tile>{{  user.gamesLost }}</mat-grid-tile>
                 <mat-grid-tile>Games Won:</mat-grid-tile>
-                <mat-grid-tile>5</mat-grid-tile>
+                <mat-grid-tile>{{ user.gamesWon }}</mat-grid-tile>
             </mat-grid-list>
         </mat-card>
         <mat-card>
@@ -26,19 +26,10 @@
                     Players Beaten
                 </mat-list-item>
                 <mat-divider></mat-divider>
-                <mat-list-item class="user-info">
-                    <img class="user-photo" [src]="user.photoURL">
-                    <h3>{{ user.displayName }}</h3>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item class="user-info">
-                    <img class="user-photo" [src]="user.photoURL">
-                    <h3>{{ user.displayName }}</h3>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item class="user-info">
-                    <img class="user-photo" [src]="user.photoURL">
-                    <h3>{{ user.displayName }}</h3>
+                <mat-list-item *ngFor="let playerBeat of playersBeat" class="user-info">
+                    <img class="user-photo" [src]="playerBeat.photoURL">
+                    <h3>{{ playerBeat.displayName }}</h3>
+                    <mat-divider></mat-divider>
                 </mat-list-item>
             </mat-list>
         </mat-card>
@@ -48,19 +39,10 @@
                     Players Lost To
                 </mat-list-item>
                 <mat-divider></mat-divider>
-                <mat-list-item class="user-info">
-                    <img class="user-photo" [src]="user.photoURL">
-                    <h3>{{ user.displayName }}</h3>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item class="user-info">
-                    <img class="user-photo" [src]="user.photoURL">
-                    <h3>{{ user.displayName }}</h3>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item class="user-info">
-                    <img class="user-photo" [src]="user.photoURL">
-                    <h3>{{ user.displayName }}</h3>
+                <mat-list-item *ngFor="let playerLost of playersLost" class="user-info">
+                    <img class="user-photo" [src]="playerLost.displayName">
+                    <h3>{{ playerLost.displayName }}</h3>
+                    <mat-divider></mat-divider>
                 </mat-list-item>
             </mat-list>
         </mat-card>
