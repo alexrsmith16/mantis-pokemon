@@ -62,7 +62,6 @@ export class GameComponent implements OnInit {
     });
     this.usersArray = this.tempUsersArray;
     this.currentPlayer = this.usersArray[0].name;
-    console.log(this.usersArray.length);
     if (this.usersArray.length <= 1) {
       this.singlePlayer();
     }

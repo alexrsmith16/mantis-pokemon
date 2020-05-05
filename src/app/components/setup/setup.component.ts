@@ -111,7 +111,7 @@ export class SetupComponent implements OnInit {
       playersBeat: [],
       playersLost: [],
       uid: "",
-    }], 
+    }],
     numOfCards: 0,
     numOfPlayers: [],
     playerNames: [],
