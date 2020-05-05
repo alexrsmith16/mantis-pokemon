@@ -101,6 +101,17 @@ export class SetupComponent implements OnInit {
   ];
   public tempPlayerArray;
   public gameComp: Setup = {
+    firebaseObject: [{
+      displayName: "",
+      email: "",
+      gamesLost: 0,
+      gamesPlayed: 0,
+      gamesWon: 0,
+      photoURL: "",
+      playersBeat: [],
+      playersLost: [],
+      uid: "",
+    }], 
     numOfCards: 0,
     numOfPlayers: [],
     playerNames: [],
@@ -128,6 +139,7 @@ export class SetupComponent implements OnInit {
         break;
       }
     }
+    // this.gameComp.firebaseObject = this.users$;
     this.gameComp.numOfCards = this.numOfCards;
     this.gameComp.numOfPlayers = this.tempPlayerArray;
     for (let index = 0; index < this.tempPlayerNamesArray.length; index++) {
