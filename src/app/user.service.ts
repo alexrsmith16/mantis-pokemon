@@ -73,6 +73,11 @@ export class UserService {
       .catch(error => console.log('add', error));
   }
 
+  editUser(user: User) {
+    this.usersRef.doc(user.uid).update(user)
+      .then(_ => console.log('Success on update'))
+      .catch(error => console.log('update', error));
+  }
 
   private errorHandler(error) {
     console.log(error);
