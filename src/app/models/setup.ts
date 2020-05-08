@@ -1,22 +1,19 @@
+import { User } from 'src/app/models/user';
+
 export interface Setup {
-  firebaseObject: {
-    displayName: string;
-    email: string;
-    gamesLost: number;
-    gamesPlayed: number;
-    gamesWon: number;
-    photoURL: string;
-    playersBeat: [];
-    playersLost: [];
-    uid: string;
-  }[];
   numOfCards: number;
-  numOfPlayers: {
-    name: string;
-  }[];
-  playerNames: {
-    name: string;
-    score: number;
-  }[];
+  players: User[];
   difficulty: string;
 }
+
+// firebaseObject: {
+//   displayName: string;
+//   email: string;
+//   gamesLost: number;
+//   gamesPlayed: number;
+//   gamesWon: number;
+//   photoURL: string;
+//   playersBeat: [];
+//   playersLost: [];
+//   uid: string;
+// }[];

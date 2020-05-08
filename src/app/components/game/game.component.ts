@@ -3,6 +3,7 @@ import { GameServiceService } from "./game-service.service";
 import { Card } from "../../models/card";
 import * as _ from "lodash";
 import { UserService } from 'src/app/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: "app-game",
@@ -53,12 +54,13 @@ export class GameComponent implements OnInit {
     this.getPokemon();
     console.log(this._gameService.setupGet());
     let setup = this._gameService.setupGet();
+    console.log(setup);
     this.numOfPairs = Number(setup.numOfCards);
-    this.numOfPlayers = setup.playerNames;
+    this.numOfPlayers = setup.players.length;
     this.remaining = setup.numOfCards;
     this.difficulty = setup.difficulty;
-    setup.playerNames.forEach((element) => {
-      if (element.name !== "") {
+    setup.players.forEach((element: User) => {
+      if (element.displayName !== "") {
         this.tempUsersArray.push(element);
       }
     });
