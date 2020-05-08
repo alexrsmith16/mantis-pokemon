@@ -106,7 +106,6 @@ export class SetupComponent implements OnInit {
   playGame() {
     this.gameComp.numOfCards = this.numOfCards;
     this.gameComp.players = this.tempPlayerNamesArray;
-    console.log(this.gameComp);
     this._gameService.setupSet(this.gameComp);
   }
 

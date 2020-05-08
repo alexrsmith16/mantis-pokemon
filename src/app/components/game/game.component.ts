@@ -32,7 +32,7 @@ export class GameComponent implements OnInit {
   public turn = 0;
   public round = 0;
   public remaining;
-  public currentPlayer;
+  public currentPlayer: string;
   public victor = [];
   public losers = [];
   public difficulty;
@@ -44,20 +44,19 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.getPokemon();
     let setup = this._gameService.setupGet();
-    console.log(setup);
     this.setupArray = setup;
     this.usersArray = this.setupArray.players;
     this.numOfPairs = Number(setup.numOfCards);
     this.numOfPlayers = setup.players.length;
     this.remaining = setup.numOfCards;
     this.difficulty = setup.difficulty;
-    // this.currentPlayer = this.setupArray.players[0].displayName;
+    // this.currentPlayer = this.usersArray[0].displayName;
     // console.log(this.currentPlayer);
     if (this.numOfPlayers <= 1) {
       this.singlePlayer();
     }
     // this.usersArray.forEach(element => {
-    //   element.score = 0;
+    //   element.score;
     // });
     console.log(this.usersArray);
   }
@@ -206,7 +205,7 @@ export class GameComponent implements OnInit {
             this.turn = 0;
             this.round++;
           }
-          this.currentPlayer = this.usersArray[this.turn].name;
+          this.currentPlayer = this.usersArray[this.turn].displayName;
         }
         this.isDisabled = false;
       }, 1000);

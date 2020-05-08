@@ -29,10 +29,8 @@ export class GameServiceService {
     for(let player of scope.players) {
       this.userService.getUserObservable(player).subscribe(user => {
         tempSetup.players.push(user);
-        console.log(tempSetup.players);
       })
     }
     this.setup = tempSetup;
-    console.log(tempSetup)
   }
 }
