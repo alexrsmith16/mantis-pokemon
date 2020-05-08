@@ -32,6 +32,7 @@ export class GameServiceService {
         console.log(tempSetup.players);
       })
     }
-    this.setup = scope;
+    this.setup = tempSetup;
+    console.log(tempSetup)
   }
 }

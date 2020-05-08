@@ -3,7 +3,7 @@ import { GameServiceService } from "./game-service.service";
 import { Card } from "../../models/card";
 import * as _ from "lodash";
 import { UserService } from 'src/app/user.service';
-import { User } from 'src/app/models/user';
+import { Setup } from "src/app/models/setup";
 
 @Component({
   selector: "app-game",
@@ -11,19 +11,15 @@ import { User } from 'src/app/models/user';
   styleUrls: ["./game.component.scss"],
 })
 export class GameComponent implements OnInit {
+  public setupArray: Setup;
   public pokeArray;
   public pokemon;
+  public singlePlayerTest: boolean = false
   public imgUrl =
     "https://jbrogan17.files.wordpress.com/2010/12/jared-pokemon-card-backside1.jpg";
   public ranNum = Math.floor(Math.random() * 89);
   public numOfPairs = 10;
   public numOfPlayers;
-  public playerArray = {
-    player1: 'example1',
-    player2: 'example2',
-    player3: 'example3',
-    player4: 'example4'
-  }
   public counter;
   public check = 0;
   public matched = [];
@@ -32,19 +28,14 @@ export class GameComponent implements OnInit {
   public index;
   public isDisabled: boolean = false;
   public tempUsersArray = [];
-  public usersArray = [
-    { name: "Test-1", score: 0 },
-    { name: "Test-2", score: 0 },
-    { name: "Test-3", score: 0 },
-    { name: "Test-4", score: 0 },
-  ];
+  public usersArray;
   public turn = 0;
   public round = 0;
   public remaining;
-  public currentPlayer = this.usersArray[0].name;
+  public currentPlayer;
   public victor = [];
   public losers = [];
-  public difficulty = "medium";
+  public difficulty;
   public roundsRemaining;
   public resetRounds;
 
@@ -52,23 +43,23 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPokemon();
-    console.log(this._gameService.setupGet());
     let setup = this._gameService.setupGet();
     console.log(setup);
+    this.setupArray = setup;
+    this.usersArray = this.setupArray.players;
     this.numOfPairs = Number(setup.numOfCards);
     this.numOfPlayers = setup.players.length;
     this.remaining = setup.numOfCards;
     this.difficulty = setup.difficulty;
-    setup.players.forEach((element: User) => {
-      if (element.displayName !== "") {
-        this.tempUsersArray.push(element);
-      }
-    });
-    this.usersArray = this.tempUsersArray;
-    this.currentPlayer = this.usersArray[0].name;
-    if (this.usersArray.length <= 1) {
+    // this.currentPlayer = this.setupArray.players[0].displayName;
+    // console.log(this.currentPlayer);
+    if (this.numOfPlayers <= 1) {
       this.singlePlayer();
     }
+    // this.usersArray.forEach(element => {
+    //   element.score = 0;
+    // });
+    console.log(this.usersArray);
   }
 
   getPokemon() {
@@ -115,6 +106,7 @@ export class GameComponent implements OnInit {
   }
 
   singlePlayer() {
+    this.singlePlayerTest = true;
     if (this.difficulty === "easy") {
       this.roundsRemaining = this.numOfPairs * 3;
       this.resetRounds = this.numOfPairs * 3;
@@ -144,7 +136,9 @@ export class GameComponent implements OnInit {
     });
     if (this.counter >= 2) {
       this.isDisabled = true;
-      this.roundsRemaining--;
+      if (!this.singlePlayerTest) {
+        this.roundsRemaining--;
+      }
       this.pokeArray.forEach((card) => {
         if (card.flipped === false) {
           this.matched.push(card.id);
@@ -183,9 +177,9 @@ export class GameComponent implements OnInit {
             });
             this.usersArray.forEach((element) => {
               if (element.score === victorChoice) {
-                this.victor.push(element.name);
+                this.victor.push(element.displayName);
               } else {
-                this.losers.push(element.name);
+                this.losers.push(element.displayName);
               }
             });
             console.log("victor: " + this.victor + ", loser: " + this.losers);
@@ -198,6 +192,7 @@ export class GameComponent implements OnInit {
           }
         } else if (this.roundsRemaining === 0) {
           console.log("You Lose!")
+          this.losers.push(this.pokeArray);
           this.pokeArray = [];
         } else {
           console.log("Failure");
