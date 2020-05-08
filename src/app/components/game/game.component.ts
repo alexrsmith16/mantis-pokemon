@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { GameServiceService } from "./game-service.service";
 import { Card } from "../../models/card";
 import * as _ from "lodash";
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: "app-game",
@@ -46,7 +47,7 @@ export class GameComponent implements OnInit {
   public roundsRemaining;
   public resetRounds;
 
-  constructor(private _gameService: GameServiceService) {}
+  constructor(private _gameService: GameServiceService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.getPokemon();
@@ -186,6 +187,12 @@ export class GameComponent implements OnInit {
               }
             });
             console.log("victor: " + this.victor + ", loser: " + this.losers);
+            // this.victor.forEach(current => {
+            //   this.userService.editUser(current)
+            // })
+            // this.losers.forEach(current => {
+            //   this.userService.editUser(current)
+            // })
           }
         } else if (this.roundsRemaining === 0) {
           console.log("You Lose!")
