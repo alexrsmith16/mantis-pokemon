@@ -44,21 +44,16 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.getPokemon();
     let setup = this._gameService.setupGet();
+    console.log(setup);
     this.setupArray = setup;
     this.usersArray = this.setupArray.players;
     this.numOfPairs = Number(setup.numOfCards);
     this.numOfPlayers = setup.players.length;
     this.remaining = setup.numOfCards;
     this.difficulty = setup.difficulty;
-    // this.currentPlayer = this.usersArray[0].displayName;
-    // console.log(this.currentPlayer);
     if (this.numOfPlayers <= 1) {
       this.singlePlayer();
     }
-    // this.usersArray.forEach(element => {
-    //   element.score;
-    // });
-    console.log(this.usersArray);
   }
 
   getPokemon() {
@@ -85,6 +80,10 @@ export class GameComponent implements OnInit {
 
         this.pokeArray.forEach((element) => {
           element.flipped = true;
+        });
+        this.currentPlayer = this.usersArray[0].displayName;
+        this.usersArray.forEach(element => {
+          element.score = 0;
         });
       },
       (err) => console.error(err),

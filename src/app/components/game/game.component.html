@@ -3,7 +3,7 @@
     <h2>pokemon</h2>
     <button (click)="resetGame()">Reset</button>
     <div>
-      <div *ngFor="let user of setupArray.players">Name: {{user.displayName}}, Current score: <!-- {{user.score}} --></div>
+      <div *ngFor="let user of usersArray">Name: {{user.displayName}}, Current score: {{user.score}}</div>
     </div>
     <h2>Round: {{round}}, Turn: {{currentPlayer}}, Matches Remaining: {{remaining}}</h2>
     <div *ngIf="usersArray.length <= 1">Rounds Remaining: {{roundsRemaining}}</div>
