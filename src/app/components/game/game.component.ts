@@ -50,6 +50,7 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPokemon();
+    console.log(this._gameService.setupGet());
     let setup = this._gameService.setupGet();
     this.numOfPairs = Number(setup.numOfCards);
     this.numOfPlayers = setup.playerNames;

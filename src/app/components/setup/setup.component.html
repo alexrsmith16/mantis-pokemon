@@ -32,7 +32,7 @@
 
       <select class='optionClass' id="playerSelection" *ngFor="let temp of tempPlayerArray; index as i" [(ngModel)]='tempPlayerNamesArray[i]'>
         <!-- Doesn't auto complete "1" until another option has been selected --JOHN -->
-        <option *ngFor="let tempPlayer of users$ | async; index as i" [value]="tempPlayer.uid" >{{ tempPlayer.displayName }}</option>
+        <option *ngFor="let tempPlayer of users$ | async; index as i" [value]="tempPlayer.displayName" >{{ tempPlayer.displayName }}</option>
       </select>
       <!-- Currently still needs to know which player is selected in the option, when passing to gameComp --JOHN -->
       <div id='difficultyContainer'>
