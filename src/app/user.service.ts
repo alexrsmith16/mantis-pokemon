@@ -34,16 +34,6 @@ export class UserService {
     console.log(temp);
     return temp;
   }
-  
-  // getUser(uid: string): User {
-  //   this.db.doc<User>(`users/${uid}`).valueChanges().pipe(
-  //     tap(user => {
-  //       console.log("getUser:");
-  //       console.log(user)
-  //       return user
-  //     })
-  //   )
-  // }
 
   getUsersObservable(): Observable<User[]> {
     return this.usersRef.snapshotChanges()
