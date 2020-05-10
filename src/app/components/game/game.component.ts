@@ -175,18 +175,21 @@ export class GameComponent implements OnInit {
             });
             this.usersArray.forEach((element) => {
               if (element.score === victorChoice) {
-                this.victor.push(element.displayName);
+                this.victor.push(element);
               } else {
-                this.losers.push(element.displayName);
+                this.losers.push(element);
               }
             });
-            console.log("victor: " + this.victor + ", loser: " + this.losers);
-            // this.victor.forEach(current => {
-            //   this.userService.editUser(current)
-            // })
-            // this.losers.forEach(current => {
-            //   this.userService.editUser(current)
-            // })
+            console.log("victor: ")
+            console.log(this.victor)
+            console.log("loser: ")
+            console.log(this.losers);
+            this.victor.forEach(current => {
+              this.userService.editUser(current)
+            });
+            this.losers.forEach(current => {
+              this.userService.editUser(current)
+            });
           }
         } else if (this.roundsRemaining === 0) {
           console.log("You Lose!")

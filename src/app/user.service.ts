@@ -64,7 +64,7 @@ export class UserService {
   }
 
   editUser(user: User) {
-    this.usersRef.doc(user.uid).update(user)
+    this.usersRef.doc(`${user.uid}`).update(user)
       .then(_ => console.log('Success on update'))
       .catch(error => console.log('update', error));
   }
