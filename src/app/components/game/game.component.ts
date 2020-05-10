@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { GameServiceService } from "./game-service.service";
-import { Card } from "../../models/card";
+import { Card } from "src/app/models/card";
 import * as _ from "lodash";
-import { UserService } from 'src/app/user.service';
 import { Setup } from "src/app/models/setup";
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: "app-game",
@@ -33,8 +34,8 @@ export class GameComponent implements OnInit {
   public round = 0;
   public remaining;
   public currentPlayer: string;
-  public victor = [];
-  public losers = [];
+  public victor: User[] = []
+  public losers: User[] = [];
   public difficulty;
   public roundsRemaining;
   public resetRounds;
@@ -185,9 +186,12 @@ export class GameComponent implements OnInit {
             console.log("loser: ")
             console.log(this.losers);
             this.victor.forEach(current => {
+              current.gamesPlayed += 1;
+              current.gamesWon += 1;
               this.userService.editUser(current)
             });
             this.losers.forEach(current => {
+              current.gamesLost += 1;
               this.userService.editUser(current)
             });
           }
